@@ -111,11 +111,12 @@ def GetVSALIGN(mets_paths, dbname, CGSNumber):
 
 def GetPANGO(pango):
 	pango_results = []
+	print(pango)
 	for each in pango:
 		with open (each) as csv_file:
 			pangolin_lineages = pd.read_csv(csv_file)
 			print(pangolin_lineages.columns)
-		#pangolin_lineages.rename(columns={'?Sequence name':'SAMPLE_ID'}, inplace=True)
+		pangolin_lineages.rename(columns={'?Sequence name':'SAMPLE_ID'}, inplace=True)
 		pango_results.append(pangolin_lineages)
 		pangolin_all = pd.concat(pango_results)
 	return(pangolin_all)
@@ -125,7 +126,7 @@ def GetNEXTCLADE(nc):
 	for each in nc:
 		with open (each) as csv_file:
 			nc_lineages = pd.read_csv(csv_file, sep=';')
-		#nc_lineages.rename(columns={'seqName': 'SAMPLE_ID'}, inplace=True)
+		nc_lineages.rename(columns={'seqName': 'SAMPLE_ID'}, inplace=True)
 		nc_results.append(nc_lineages)
 		nc_all = pd.concat(nc_results)
 	return(nc_all)
